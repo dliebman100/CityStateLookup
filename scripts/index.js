@@ -17,11 +17,11 @@ let cityStates = [{
     {
         state: "New York",
         stateAbbr: "NY",
-        cities: ["Queens", "Long Island City", "Manhattan"]
+        cities: ["Queens", "Long Island City", "Manhattan", "Rochester", "Albany"]
     }
 ];
 
-window.onload = function() {
+window.onload = function () {
     //add loadStatesDropdown function
     loadStatesDropdown();
 
@@ -62,8 +62,9 @@ function onStatesDropdownChanged() {
     const statesDropdown = document.getElementById("statesDropdown");
     const citiesDropdown = document.getElementById("citiesDropdown");
 
-    //remove previous items from dropdown menu
+    //remove ALL cities from citiesDropdown in dropdown
     citiesDropdown.options.length = 0;
+    
     //find the statesDropdown selection
     let selectedStateAbbr = statesDropdown.value;
     //if they pick selected state invoke addSelectStateToCity function
@@ -72,10 +73,9 @@ function onStatesDropdownChanged() {
     }
     //match elements in cityStates array using find method
     let matchingState = cityStates.find(arrElement => arrElement.stateAbbr == selectedStateAbbr);
-
     //add "Select one..." option
     let selectOption = document.createElement("option");
-    selectOption.textContent = "Select one...";
+    selectOption.textContent = "Now select a city...";
     selectOption.value = "";
     citiesDropdown.appendChild(selectOption);
 
@@ -86,42 +86,42 @@ function onStatesDropdownChanged() {
         optionTag.textContent = matchingState.cities[i];
         citiesDropdown.appendChild(optionTag);
     }
+    //when selecting new states clears message content
+    clearContent();
 }
-
 //onCitiesDropdownChanged()
 function onCitiesDropdownChanged() {
     //declare statesDropdown and citiesDropdown
     const statesDropdown = document.getElementById("statesDropdown");
     const citiesDropdown = document.getElementById("citiesDropdown");
-    
-    const citiesPara = document.getElementById("citiesPara");
+
+    //clears cityState para
+    const messagePara = document.getElementById("messagePara");
     messagePara.innerHTML = "";
-    const statePara = document.getElementById("statePara");
-    message2Para.innerHTML = "";
 
     //get selectedCity
     let selectedCity = citiesDropdown.value;
-        if(selectedCity == ""){
-            return;
-        }
-    
+    if (selectedCity == "") {
+        return;
+    }
     let selectedStateIndex = statesDropdown.selectedIndex;
-    let selectedState = statesDropdown.options[selectedStateIndex].text;    
+    let selectedState = statesDropdown.options[selectedStateIndex].text;
 
     //message display in <p>
-    let message = "State: " + selectedStateAbbr + "<br>";
-    let message2 = "City: " + selectedState;
-    statessPara.innerHTML = message;
-    citiesPara.innerHTML = message2;
+    messagePara.innerHTML = "State: " + selectedState + "<br>" +
+                            "City: " + selectedCity;
 }
-
-//addSelectStateToCity()
+//addSelectStateToCity function for dropdown menu
 function addSelectStateToCity() {
     const citiesDropdown = document.getElementById("citiesDropdown");
-
     //add "Select one..." option
     let selectOption = document.createElement("option");
     selectOption.textContent = "Select one...";
     selectOption.value = "";
     citiesDropdown.appendChild(selectOption);
+}
+//add clearContent function on statesDropdown
+function clearContent() {
+    const messagePara = document.getElementById("messagePara");
+    messagePara.innerHTML = "";
 }

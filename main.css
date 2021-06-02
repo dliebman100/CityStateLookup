@@ -1,21 +1,37 @@
-body {
-    margin: 10;
+* {
     padding: 0;
+    margin: 0;
+}
+html, body {
     font-family: 'PT Sans', sans-serif;
     font-size: 21px;
     line-height: 1.6;
     background: #1A1E26;
-    color: #fff;
+    color: black;
 }
-
 h1, h2, h3 {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 900;
-}
-
-h1 {
     font-size: 100px;
-    line-height: .8;
+    line-height: .8;  
 }
-
-
+body {
+    background: #eeebe7;
+    padding: 100px 20px;
+    text-align: center;
+}
+.sel {
+    font-size: 1rem;
+    display: inline-block;
+    margin: 3em 2em;
+    width: 350px;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+}
+.sel {
+    border-bottom: 4px solid rgba(0, 0, 0, 0.3);
+}
+.sel-bg {
+    z-index: 3;
+}

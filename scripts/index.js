@@ -86,8 +86,8 @@ function onStatesDropdownChanged() {
         optionTag.textContent = matchingState.cities[i];
         citiesDropdown.appendChild(optionTag);
     }
+    //when selecting new states clears message content
     clearContent();
-
 }
 //onCitiesDropdownChanged()
 function onCitiesDropdownChanged() {
